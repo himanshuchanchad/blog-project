@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-
+<form  method="post">
+  {% csrf_token %}
+  <label for="username">USERNAME :</label>
+  <input type="text" name="username" value="">
+  <label for="password">PASSWORD :</label>
+  <input type="password" name="password" value="">
+  <input type="submit" name="" value="submit">
+</form>
 </body>
 </html>

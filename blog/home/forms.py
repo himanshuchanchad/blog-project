@@ -16,7 +16,7 @@ class signup(forms.ModelForm):
             raise forms.ValidationError(" PASSWORD DOESN'T MATCH TRY AGAIN !   ")
     class Meta():
         model=User
-        fields=('username','password')
+        fields=('first_name','last_name','username','password')
 
 
 class userdata(forms.ModelForm):

@@ -11,16 +11,19 @@ class userdetail(models.Model):
         return self.user.username
 
 class blog_post(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,models.SET_NULL,null=True)
+    title=models.CharField(max_length=256)
     blog_content=models.TextField()
     updated=models.DateTimeField(auto_now=True)
+    published=models.DateTimeField()
     created=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
+        return self.title
+
 
 class comments(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,models.SET_NULL,null=True)
     comment=models.TextField()
     approved=models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
