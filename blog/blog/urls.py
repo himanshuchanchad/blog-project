@@ -28,5 +28,6 @@ urlpatterns = [
     path('detail/',views.detail,name='detail'),
     path('changepass/',views.changepass,name='changepass'),
     path('cb/',views.createblog,name='cb'),
+    path('blog/<slug:title>/',views.detailblog,name='blogdetail'),
     path('dp/',views.dispblog,name='display')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .forms import signup,userdata,blogcreate,add_comment
 from .models import userdetail,blog_post,comments
 from django.http import  HttpResponseRedirect,HttpResponse
@@ -105,7 +105,17 @@ def createblog(request):
 
 def dispblog(request):
     blog=blog_post.objects.all()
+
     context={
         'blog':blog,
     }
     return render(request,"blogdisplay.html" ,context)
+
+def detailblog(request,title):
+    qs=get_object_or_404(blog_post,slug=title)
+    context={
+        'b':qs,
+    }
+    return render(request,"blogdetail.html",context)
+
+
