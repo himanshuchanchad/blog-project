@@ -5,10 +5,12 @@ from django.http import  HttpResponseRedirect,HttpResponse
 from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.contrib.auth.models import  User
+from .models import userdetail
 # Create your views here.
 def home(request):
     return render(request,"home.html")
-
+@login_required
 def index(request):
     return render(request,"index.html")
 
@@ -60,3 +62,31 @@ def user_login(request):
 def log_out(request):
     logout(request)
     return HttpResponseRedirect(reverse(home))
+
+@login_required
+def changepass(request):
+    if request.method=='POST':
+            user=User.objects.get(username=request.user)
+            oldpass=request.POST.get('password')
+            newpass=request.POST.get('newpassword')
+            cnpass=request.POST.get('cnpassword')
+            print(user.check_password(oldpass))
+            if not user.check_password(oldpass):
+                return HttpResponse("INCORRECT OLD PASSWORD")
+            else:
+                if newpass!=cnpass:
+                    return HttpResponse("PASSWORD DOESNT MATCH")
+                else:
+                    user.set_password(newpass)
+                    user.save()
+                    return HttpResponse("PASSWORD SUCCESSFULLY CHANGED")
+    else:
+        return render(request,"changepass.html")
+
+def detail(request):
+    qs = userdetail.objects.get(user=request.user)
+    print(qs.img)
+    context = {
+        'qs': qs
+    }
+    return render(request,"detail.html",context)

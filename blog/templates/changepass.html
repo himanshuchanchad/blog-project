@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form  method="post">
+      {% csrf_token %}
+      <label for="password">OLD PASSWORD</label>
+      <input type="password" name="password" placeholder="old password" >
+      <label for="newpassword">NEW PASSWORD</label>
+      <input type="password" name="newpassword" placeholder="new password" >
+      <label for="cnpassword">CONFIRM NEW PASSWORD</label>
+      <input type="password" name="cnpassword" placeholder="confirm new password" >
+       <input type="submit" name="submit" value="submit">
+    </form>
+  </body>
+</html>
