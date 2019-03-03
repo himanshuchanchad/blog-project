@@ -12,10 +12,10 @@ class userdetail(models.Model):
 
 class blog_post(models.Model):
     user=models.ForeignKey(User,models.SET_NULL,null=True)
-    title=models.CharField(max_length=256)
+    title=models.CharField(max_length=256,unique=False)
     blog_content=models.TextField()
     updated=models.DateTimeField(auto_now=True)
-    published=models.DateTimeField()
+    # published=models.DateTimeField()
     created=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

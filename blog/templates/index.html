@@ -8,6 +8,8 @@
   {%if user.is_authenticated%}
 <h1>WELCOME {{user.username}}</h1>
 {%endif%}
+<a href="{% url 'cb'%}">Create blog</a>
+<a href="{% url 'display'%}">View blog</a>
 <a href="{%url 'detail'%}">details</a>
 <a href="{% url 'changepass' %}">CHANGE PASSWORD</a>
 <a href="{%url 'logout' %}">LOGOUT</a>

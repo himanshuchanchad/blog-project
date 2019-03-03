@@ -6,7 +6,6 @@ from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth.models import  User
-from .models import userdetail
 # Create your views here.
 def home(request):
     return render(request,"home.html")
@@ -92,3 +91,21 @@ def detail(request):
         'qs': qs
     }
     return render(request,"detail.html",context)
+
+@login_required
+def createblog(request):
+    if request.method=='POST':
+        title=request.POST['Title']
+        content=request.POST['content']
+        blog=blog_post.objects.create(user=request.user,title=title,blog_content=content)
+        blog.save()
+        return HttpResponseRedirect(reverse(dispblog))
+    else:
+        return render(request,"addblog.html")
+
+def dispblog(request):
+    blog=blog_post.objects.all()
+    context={
+        'blog':blog,
+    }
+    return render(request,"blogdisplay.html" ,context)
