@@ -82,11 +82,13 @@ def changepass(request):
                     return HttpResponse("PASSWORD SUCCESSFULLY CHANGED")
     else:
         return render(request,"changepass.html")
-
+@login_required
 def detail(request):
+    userinfo=User.objects.get(username=request.user)
     qs = userdetail.objects.get(user=request.user)
     print(qs.img)
     context = {
+        'info':userinfo,
         'qs': qs
     }
     return render(request,"detail.html",context)
