@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .forms import signup,userdata,blogcreate,add_comment
 from .models import userdetail,blog_post,comments
 from django.http import  HttpResponseRedirect,HttpResponse
@@ -129,5 +129,13 @@ def detailblog(request,title):
         'b':qs,
     }
     return render(request,"blogdetail.html",context)
+
+def comment_approve(request,pk):
+    comment=get_object_or_404(comments,pk=pk)
+    print(comment)
+    slug=comment.blog.slug
+    comment.approval()
+    return redirect('blogdetail',title=slug)
+
 
 

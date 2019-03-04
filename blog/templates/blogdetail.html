@@ -13,13 +13,22 @@
     <b> by <h1>{{b.user}}</h1></b>
     <br>
     <h2>COMMENTS:</h2>
+{% if request.user == b.user %}
+{%for com in displaycomment  %}
+<h4>{{ com.comment }}</h4>
+<h2>uploaded on {{com.created}}</h2>
+{% if not com.approved %}
+  <a href="{% url 'comment_approve' pk=com.pk %}">approve</a>
+{% endif %}
+{% endfor %}
+{% else %}
 {%for com in displaycomment  %}
 {% if com.approved%}
 <h4>{{ com.comment }}</h4>
 <h2>uploaded on {{com.created}}</h2>
 {% endif %}
-
 {%endfor %}
+{%endif%}
     <form  method="post">
       {% csrf_token %}
       <label for="comment">Comment :</label>

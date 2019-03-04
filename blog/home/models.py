@@ -37,4 +37,8 @@ class comments(models.Model):
     approved=models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.user.username
+        return f"{self.blog.title}"
+
+    def approval(self):
+        self.approved = True
+        self.save()
