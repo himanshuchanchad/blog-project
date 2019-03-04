@@ -9,9 +9,6 @@ from django.contrib.auth.models import  User
 # Create your views here.
 def home(request):
     return render(request,"home.html")
-@login_required
-def index(request):
-    return render(request,"index.html")
 
 def register(request):
     if request.method=='POST':
@@ -49,7 +46,7 @@ def user_login(request):
             user=authenticate(username=username,password=password)
             if user:
                 login(request,user)
-                return HttpResponseRedirect(reverse(index))
+                return HttpResponseRedirect(reverse(home))
             else:
                 return HttpResponse("user doesn't exists or password doesn't match!")
         else:

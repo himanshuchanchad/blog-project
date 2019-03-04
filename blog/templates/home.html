@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <title>Title</title>
 </head>
 <body>
-<h1>WELCOME</h1>
-<a href="{% url 'register'%}">Sign up</a>
-<a href="{%url 'login' %}">Login</a>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Blog World.com</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'cb'%}"></span>Create blog </a></li>
+      <li><a href="{% url 'display'%}"></span>View Blog</a></li>
+      <li><a href="{%url 'detail'%}">Personal Info </a></li>
+      <li><a href="{% url 'changepass' %}">CHANGE PASSWORD</a></li>
+      <li><a href="{%url 'logout' %}"> Logout</a></li>
+    </ul>
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'register'%}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="{%url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+    {% endif %}
+  </div>
+</nav>
+{% block navbar %}
+{% endblock %}
 </body>
 </html>
