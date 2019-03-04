@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -8,6 +9,22 @@
     WELCOME
   <h2>{{b.title}}</h2>
        {{b.blog_content}} <br>
-    <b> uploaded on {{b.created}}</b> 
+    <b> uploaded on {{b.created}}</b><br>
+    <b> by <h1>{{b.user}}</h1></b>
+    <br>
+    <h2>COMMENTS:</h2>
+{%for com in displaycomment  %}
+{% if com.approved%}
+<h4>{{ com.comment }}</h4>
+<h2>uploaded on {{com.created}}</h2>
+{% endif %}
+
+{%endfor %}
+    <form  method="post">
+      {% csrf_token %}
+      <label for="comment">Comment :</label>
+      <input type="text" name="comment" value="">
+      <input type="submit" name="submit" value="submit">
+    </form>
   </body>
 </html>

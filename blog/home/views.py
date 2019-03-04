@@ -109,11 +109,23 @@ def dispblog(request):
     context={
         'blog':blog,
     }
-    return render(request,"blogdisplay.html" ,context)
+    return render(request,"generalbloglist.html" ,context)
 
 def detailblog(request,title):
     qs=get_object_or_404(blog_post,slug=title)
+    getcomment=comments.objects.filter(blog=qs)
+    if request.method=='POST':
+        commentadd=request.POST['comment']
+        if qs.user==request.user:
+            c = comments.objects.create(user=request.user, blog=qs, comment=commentadd,approved=True)
+            c.save()
+        else:
+            c=comments.objects.create(user=request.user,blog=qs,comment=commentadd)
+            c.save()
+    else:
+        pass
     context={
+        'displaycomment':getcomment,
         'b':qs,
     }
     return render(request,"blogdetail.html",context)
