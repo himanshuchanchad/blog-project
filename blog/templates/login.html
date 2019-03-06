@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
+
 {% block navbar %}
-<form  method="post">
-  {% csrf_token %}
-  <label for="username">USERNAME :</label>
-  <input type="text" name="username" value="">
-  <label for="password">PASSWORD :</label>
-  <input type="password" name="password" value="">
-  <input type="submit" name="" value="submit">
-</form>
+  <style media="screen">
+    .container{
+      border: solid 2px black;
+      padding: 2px;
+
+    }
+  </style>
+<div class="container">
+  <form  method="post">
+    {% csrf_token %}
+    <label for="username">USERNAME :</label>
+    <input type="text" name="username" value=""><br><br>
+    <label for="password">PASSWORD :</label>
+    <input type="password" name="password" value=""><br>
+    <input type="submit" name="" value="submit">
+  </form>
+</div>
   {% endblock %}

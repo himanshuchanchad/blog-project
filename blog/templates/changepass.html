@@ -4,11 +4,11 @@
     <form  method="post">
       {% csrf_token %}
       <label for="password">OLD PASSWORD</label>
-      <input type="password" name="password" placeholder="old password" >
+      <input type="password" name="password" placeholder="old password" ><br>
       <label for="newpassword">NEW PASSWORD</label>
-      <input type="password" name="newpassword" placeholder="new password" >
+      <input type="password" name="newpassword" placeholder="new password" ><br>
       <label for="cnpassword">CONFIRM NEW PASSWORD</label>
-      <input type="password" name="cnpassword" placeholder="confirm new password" >
+      <input type="password" name="cnpassword" placeholder="confirm new password" ><br>
        <input type="submit" name="submit" value="submit">
     </form>
   {% endblock %}

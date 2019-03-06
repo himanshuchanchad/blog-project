@@ -8,7 +8,11 @@ from django.urls import reverse
 from django.contrib.auth.models import  User
 # Create your views here.
 def home(request):
-    return render(request,"home.html")
+    qs=blog_post.objects.all()
+    context={
+        'blog':qs
+    }
+    return render(request,"home.html",context)
 
 def register(request):
     if request.method=='POST':
@@ -101,7 +105,7 @@ def createblog(request):
         return render(request,"addblog.html")
 
 def dispblog(request):
-    blog=blog_post.objects.all()
+    blog=blog_post.objects.filter(user=request.user)
 
     context={
         'blog':blog,

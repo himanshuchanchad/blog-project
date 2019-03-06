@@ -21,14 +21,18 @@
 {%for com in displaycomment  %}
 {% if com.approved%}
 <h4>{{ com.comment }}</h4>
-<h2>uploaded on {{com.created}}</h2>
+<h6>uploaded on {{com.created}}</h6>
 {% endif %}
 {%endfor %}
 {%endif%}
+{% if user.is_authenticated %}
     <form  method="post">
       {% csrf_token %}
       <label for="comment">Comment :</label>
       <input type="text" name="comment" value="">
       <input type="submit" name="submit" value="submit">
     </form>
+    {% else %}
+    <h4><b> <a href="{% url 'login' %}">login to comment</a></b></h4>
+{% endif%}
   {% endblock %}

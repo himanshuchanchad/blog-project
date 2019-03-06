@@ -6,6 +6,9 @@
       <a href="/blog/{{b.slug}}">
           <h2>{{b.title}}</h2>
     </div>
+{% empty %}
+<h1>You havent created and published any blogs</h1>
+<h2>To publish <b> <a href="{% url 'cb' %}">click here</a> </b></h2>
+{% endfor %}
 
-    {% endfor %}
   {% endblock %}

@@ -32,6 +32,10 @@
   </div>
 </nav>
 {% block navbar %}
+{% for b in blog %}
+<h4><a href="{% url 'blogdetail' title=b.slug %}"> {{b.title}}</a></h4>
+<h6>uploaded {{b.updated}} ago</h6>
+{% endfor %}
 {% endblock %}
 </body>
 </html>
