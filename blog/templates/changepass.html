@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
 {% block navbar %}
-    <form  method="post">
+<style media="screen">
+  .class1{
+ padding:20px;
+    }
+</style>
+<div class="class1">
+  <div class="card bd-secondary text-left text-black text-center card-form " >
+      <div class="card-body">
+    <form  method="post" class="form-group">
       {% csrf_token %}
-      <label for="password">OLD PASSWORD</label>
-      <input type="password" name="password" placeholder="old password" ><br>
-      <label for="newpassword">NEW PASSWORD</label>
-      <input type="password" name="newpassword" placeholder="new password" ><br>
-      <label for="cnpassword">CONFIRM NEW PASSWORD</label>
-      <input type="password" name="cnpassword" placeholder="confirm new password" ><br>
-       <input type="submit" name="submit" value="submit">
+      <label for="password">OLD PASSWORD :</label>
+      <input type="password" name="password" placeholder="old password" ><br><br>
+      <label for="newpassword">NEW PASSWORD :</label>
+      <input type="password" name="newpassword" placeholder="new password" ><br><br>
+      <label for="cnpassword">CONFIRM NEW PASSWORD :</label>
+      <input type="password" name="cnpassword" placeholder="confirm new password" ><br><br>
+       <button type="submit" name="button" class="btn btn-outline-danger">Change</button>
     </form>
+  </div>
+  </div>
+</div>
   {% endblock %}

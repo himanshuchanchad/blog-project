@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends "home.html" %}
+
+{% block navbar %}
+<form method="post" enctype="multipart/form-data" class="form-group">
+      {{profileupdate.as_p}}
+      {% csrf_token %}
+    <button type="submit" name="button" class="btn btn-outline-primary">CHANGE</button>
+</form>
+
+{% endblock %}

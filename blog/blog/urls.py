@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from home import views
 from django.conf import settings
+from django.conf.urls import include
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,8 @@ urlpatterns = [
     path('cb/',views.createblog,name='cb'),
     path('blog/<slug:title>/', views.detailblog, name='blogdetail'),
     path('comment/<int:pk>/',views.comment_approve,name='comment_approve'),
-    path('dp/',views.dispblog,name='display')
+    path('dp/',views.dispblog,name='display'),
+    path('profileupdate/',views.profile_update,name='profileupdate'),
+    ########################################
+    path('api/post/',include(('api.urls','api'),namespace='apis'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

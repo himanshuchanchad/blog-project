@@ -2,11 +2,25 @@
 {% extends "home.html" %}
 
    {% block navbar %}
-  <form  method="post">
+   <style media="screen">
+     .class1{
+    padding:20px;
+       }
+   </style>
+   <div class="class1">
+     <div class="card bd-secondary text-left text-black card-form " >
+       <div class="card-body">
+         <div class="form-group">
+           <form  method="post">
 
-    {% csrf_token %}
-    {{form.as_p}}
-    {{detail.as_p}}
-    <button type="submit" name="button">REGISTER</button>
-  </form>
+             {% csrf_token %}
+             {{form.as_p}}
+             {{detail.as_p}}
+             <button type="submit" name="button" class="btn btn-outline-primary">REGISTER</button>
+           </form>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
   {% endblock %}

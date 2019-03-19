@@ -20,10 +20,11 @@ class signup(forms.ModelForm):
 
 
 class userdata(forms.ModelForm):
+    img=forms.ImageField(required=False)
+    about=forms.CharField(widget=forms.Textarea(),required=False)
     class Meta():
         model = userdetail
-        fields = '__all__'
-        exclude = ['user']
+        fields = ['img','about']
 
 
 class blogcreate(forms.ModelForm):

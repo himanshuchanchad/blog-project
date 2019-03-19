@@ -2,21 +2,26 @@
 {% extends "home.html" %}
 
 {% block navbar %}
-  <style media="screen">
-    .container{
-      border: solid 2px black;
-      padding: 2px;
-
+<style media="screen">
+  .class1{
+ padding:20px;
     }
-  </style>
-<div class="container">
-  <form  method="post">
-    {% csrf_token %}
-    <label for="username">USERNAME :</label>
-    <input type="text" name="username" value=""><br><br>
-    <label for="password">PASSWORD :</label>
-    <input type="password" name="password" value=""><br>
-    <input type="submit" name="" value="submit">
-  </form>
+</style>
+<div class="class1">
+  <div class="card bd-secondary text-center text-black card-form " >
+    <div class="card-body">
+      <div class="form-group">
+        <form  method="post">
+          {% csrf_token %}
+          <label for="username">USERNAME :</label>
+          <input type="text" name="username" value=""><br><br>
+          <label for="password">PASSWORD :</label>
+          <input type="password" name="password" value=""><br><br>
+          <button type="submit" name="button" class="btn btn-outline-success float-center"> Login </button>
+          <!-- <input type="submit" name="" value="submit"> -->
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
   {% endblock %}

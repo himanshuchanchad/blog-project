@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
 {% block navbar %}
+<style media="screen">
+.cont{
+  border: 2px solid black;
+  width: 100%;
+  height: 20%;
+  margin : 2px;
+  padding: 2px;
+  background-color: #596166;
+}
+.hc{
+  text-decoration: none;
+  color: white
+}
+.hc :hover{
+  color:black;
+}
+.tmp{
+  color:white;
+}
+</style>
     {% for b in blog %}
-    <div class="container">
-      <a href="/blog/{{b.slug}}">
-          <h2>{{b.title}}</h2>
+    <div class="cont">
+      <a href="/blog/{{b.slug}}" class="hc">
+          <h2>{{b.title}}</h2> </a>
+      <h4 class="tmp">Uploaded on {{b.updated}}</h4>
     </div>
 {% empty %}
 <h1>You havent created and published any blogs</h1>
-<h2>To publish <b> <a href="{% url 'cb' %}">click here</a> </b></h2>
+<h2>To publish <b> <a href="{% url 'cb' %}"  class="btn btn-outline-info">click here</a> </b></h2>
 {% endfor %}
 
   {% endblock %}

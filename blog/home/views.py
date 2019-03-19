@@ -83,6 +83,27 @@ def changepass(request):
     else:
         return render(request,"changepass.html")
 @login_required
+def profile_update(request):
+    if request.method=='POST':
+        user=userdetail.objects.get(user=request.user)
+        profile=userdata(data=request.POST)
+        if profile.is_valid():
+            if 'img' in request.FILES:
+                user.img=request.FILES['img']
+                user.save(update_fields=['img'])
+            elif user.about!=profile.cleaned_data['about']:
+                user.about=profile.cleaned_data['about']
+                user.save(update_fields=['about'])
+        return HttpResponseRedirect(reverse(detail))
+    else:
+        profile=userdata()
+    context={
+        'profileupdate':profile,
+    }
+    return render(request,'profile_update.html',context)
+
+
+@login_required
 def detail(request):
     userinfo=User.objects.get(username=request.user)
     qs = userdetail.objects.get(user=request.user)

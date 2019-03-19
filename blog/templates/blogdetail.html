@@ -2,9 +2,12 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
 {% block navbar %}
-    WELCOME
-  <h2>{{b.title}}</h2>
-       {{b.blog_content}} <br>
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{b.title}}</h1>
+    <p class="lead">{{b.blog_content}}</p>
+  </div>
+</div>
     <b> uploaded on {{b.created}}</b><br>
     <b> by <h1>{{b.user}}</h1></b>
     <br>

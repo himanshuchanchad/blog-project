@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
 {% block navbar %}
-    <form  method="post">
+<style media="screen">
+  .class1{
+ padding:20px;
+    }
+</style>
+<div class="class1">
+  <div class="card bd-secondary text-left text-black card-form " >
+      <div class="card-body">
+      <form  method="post" class="form-group">
       {%csrf_token %}
-      <label for="Title">TITLE :</label>
-      <input type="text" name="Title" value="">
-      <label for="content">Content :</label><br>
+      <label for="Title">TITLE :</label><br>
+      <input type="text" name="Title" value=""><br>
+      <label for="content">Content :</label><br><br>
       <textarea name="content" rows="8" cols="80"></textarea><br>
-      <input type="submit" name="" value="submit">
-    </form>
+      <button type="submit" name="button" class="btn btn-outline-success">Post</button>
+      </form>
+    </div>
+  </div>
+</div>
   {% endblock %}

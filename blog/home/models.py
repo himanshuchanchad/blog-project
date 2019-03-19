@@ -36,6 +36,7 @@ class comments(models.Model):
     comment=models.TextField()
     approved=models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return f"{self.blog.title}"
 
