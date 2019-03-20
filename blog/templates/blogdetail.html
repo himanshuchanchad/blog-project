@@ -2,40 +2,60 @@
 <!DOCTYPE html>
 {% extends "home.html" %}
 {% block navbar %}
-  <div class="jumbotron jumbotron-fluid">
+<style media="screen">
+.qwerty{
+  border: 2px solid white;
+  color :black;
+  background-color: white;
+  margin: 2px;
+}
+</style>
+  <div class="jumbotron jumbotron-fluid ">
   <div class="container">
     <h1 class="display-4">{{b.title}}</h1>
-    <p class="lead">{{b.blog_content}}</p>
+    <p class="lead text-body">{{b.blog_content}}</p>
+    <div class="text-primary">
+      <b> uploaded on {{b.created}}</b><br>
+      <b> by <h4>{{b.user}}</h4></b>
+    </div>
+    <br>
   </div>
 </div>
-    <b> uploaded on {{b.created}}</b><br>
-    <b> by <h1>{{b.user}}</h1></b>
-    <br>
-    <h2>COMMENTS:</h2>
+<div class="jumbotron jumbotron-fluid bg-secondary text-white">
+<div class="container">
+  <h3>COMMENTS :</h3>
 {% if request.user == b.user %}
-{%for com in displaycomment  %}
-<h4>{{ com.comment }}</h4>
-<h2>uploaded on {{com.created}}</h2>
-{% if not com.approved %}
-  <a href="{% url 'comment_approve' pk=com.pk %}">approve</a>
-{% endif %}
-{% endfor %}
+<div class="">
+  {%for com in displaycomment  %}
+    <h1 >{{com.user.username}}</h1>
+    <div class="qwerty">
+      <h2 class="text-left">{{ com.comment }}</h2>
+      <h6 class="text-left">uploaded on {{com.created}}</h6>
+    </div>
+      {% if not com.approved %}
+        <a href="{% url 'comment_approve' pk=com.pk %}" class="btn btn-outline-primary">approve</a>
+      {% endif %}
+    {% endfor %}
+</div>
 {% else %}
 {%for com in displaycomment  %}
 {% if com.approved%}
-<h4>{{ com.comment }}</h4>
-<h6>uploaded on {{com.created}}</h6>
+<h4 class="text-left">{{ com.comment }}</h4>
+<h6 class="text-left">uploaded on {{com.created}}</h6>
 {% endif %}
 {%endfor %}
 {%endif%}
 {% if user.is_authenticated %}
-    <form  method="post">
-      {% csrf_token %}
-      <label for="comment">Comment :</label>
-      <input type="text" name="comment" value="">
-      <input type="submit" name="submit" value="submit">
-    </form>
-    {% else %}
-    <h4><b> <a href="{% url 'login' %}">login to comment</a></b></h4>
+  <form  method="post">
+    {% csrf_token %}
+    <label for="comment">Comment :</label>
+    <input type="text" name="comment" value="" class="form-control" required><br>
+    <button type="submit" name="button">Comment</button>
+  </form>
+  {% else %}
+  <h4><b> <a href="{% url 'login' %}">login to comment</a></b></h4>
+</div>
+</div>
+
 {% endif%}
   {% endblock %}
