@@ -107,7 +107,6 @@ def profile_update(request):
 def detail(request):
     userinfo=User.objects.get(username=request.user)
     qs = userdetail.objects.get(user=request.user)
-    print(qs.img)
     context = {
         'info':userinfo,
         'qs': qs
